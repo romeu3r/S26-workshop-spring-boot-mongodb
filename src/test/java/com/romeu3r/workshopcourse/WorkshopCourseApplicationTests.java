@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 @SpringBootTest
 class WorkshopCourseApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

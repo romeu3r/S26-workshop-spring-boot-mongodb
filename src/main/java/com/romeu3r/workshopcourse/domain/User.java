@@ -34,6 +34,7 @@ public class User implements Serializable {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+
     public String getId() {
         return id;
     }
