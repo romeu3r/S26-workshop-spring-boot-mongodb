@@ -1,5 +1,6 @@
 package com.romeu3r.workshopcourse.resources;
 
+import com.romeu3r.workshopcourse.domain.Post;
 import com.romeu3r.workshopcourse.domain.User;
 import com.romeu3r.workshopcourse.dto.UserDTO;
 import com.romeu3r.workshopcourse.services.UserService;
@@ -51,5 +52,12 @@ public class UserResources {
         obj.setId(id);
         userService.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User userId = userService.findById(id);
+        List<Post> posts = userId.getPosts();
+        return ResponseEntity.ok().body(posts);
     }
 }
