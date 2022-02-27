@@ -8,10 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.Servlet;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +42,14 @@ public class UserResources {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         userService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> update(@PathVariable String id, @RequestBody UserDTO userDTO) {
+        User obj = userService.fromDTO(userDTO);
+        obj.setId(id);
+        userService.update(obj);
         return ResponseEntity.noContent().build();
     }
 }
